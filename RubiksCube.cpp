@@ -1,12 +1,12 @@
 #include <RubiksCube.h>
-
+#include <iostream>
 
 void RubiksCube::setColor(const FaceColor& side, const int& row, const int& clm, const FaceColor& color) {
-    faces[side*6+row*3+clm] = color;
+    faces[side*9+row*3+clm] = color;
 }
 
 FaceColor RubiksCube::getColor(const FaceColor& side, const int& row, const int& clm) const {
-    return faces[side*6+row*3+clm];
+    return faces[side*9+row*3+clm];
 }
 
 RubiksCube::RubiksCube()
