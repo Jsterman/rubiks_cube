@@ -29,4 +29,5 @@ FaceColor **RubiksCube::getSide(const FaceColor side)
             colors[i][j] = getColor(side, i, j);
         }
     }
+    return colors;
 }

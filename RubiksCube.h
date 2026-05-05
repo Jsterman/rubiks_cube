@@ -1,3 +1,4 @@
+#pragma once
 #include <FaceColor.h>
 
 class RubiksCube {
