@@ -5,6 +5,29 @@ void RubiksCubeList::setColor(const FaceColor& side, const int& row, const int& 
     faces[side*9+row*3+clm] = color;
 }
 
+void RubiksCubeList::turnRedFaceCW()
+{
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(blue, i, 2);
+        setColor(blue, i, 2, getColor(white, i, 2));
+        setColor(white, i, 2, getColor(green, 2-i, 0));
+        setColor(green, 2-i, 0, getColor(yellow, 2, 2-i));
+        setColor(yellow, 2, 2-i, current);
+    }
+    // TODO: Rotate colors on the red face
+}
+
+void RubiksCubeList::turnRedFaceCCW() {
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(blue, i, 2);
+        setColor(blue, i, 2, getColor(yellow, 2, 2-i));
+        setColor(yellow, 2, 2-i, getColor(green, 2-i, 0));
+        setColor(green, 2-i, 0, getColor(white, i, 2));
+        setColor(white, i, 2, current);
+    }
+    // TODO: Rotate colors on the red face
+}
+
 FaceColor RubiksCubeList::getLeftFace()
 {
     switch (currentSide) {
@@ -125,6 +148,11 @@ void RubiksCubeList::setCurrentFace(const FaceColor &s)
 
 void RubiksCubeList::turnRightFaceCW()
 {
+    switch(currentSide) {
+        case blue:
+            turnRedFaceCW();
+            break;
+    }
 }
 
 void RubiksCubeList::turnRightFaceCCW()
@@ -133,13 +161,7 @@ void RubiksCubeList::turnRightFaceCCW()
 
 void RubiksCubeList::turnLeftFaceCW()
 {
-    FaceColor onCurrentFace;
-    for (int i = 0; i < 3; i++) {
-        onCurrentFace = getColor(currentSide, i, 2);
-        setColor(currentSide, i, 2, getColor(getDownFace(), i, 2));
-        setColor(getDownFace(), i, 2, getColor(getBackFace(), i, 2));
-        setColor(getUpFace(), i, 2, getColor(getDownFace(), i, 2));
-    }
+    
 }
 
 void RubiksCubeList::turnLeftFaceCCW()

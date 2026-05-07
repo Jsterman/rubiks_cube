@@ -84,6 +84,20 @@ TEST(RubiksCubeListTests, GetBackSideTest) {
 
 TEST(RubiksCubeListTests, RotateLeftCWTest) {
     RubiksCubeList cube;
-    // cube.turnLeftFaceCW();
+    cube.setCurrentFace(blue);
+    cube.turnLeftFaceCW();
+    std::string str = "W W O\
+W W O\
+W W O\
+\
+R R W\
+R R W\
+R R W\
+
+Y Y R\
+Y Y R\
+Y Y R\
+\
+";
 
 }
