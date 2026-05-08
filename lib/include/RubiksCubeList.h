@@ -13,9 +13,18 @@ private:
     void turnRedFaceCCW();
     void turnBlueFaceCW();
     void turnBlueFaceCCW();
+    void turnWhiteFaceCW();
+    void turnWhiteFaceCCW();
+    void turnOrangeFaceCW();
+    void turnOrangeFaceCCW();
+    void turnGreenFaceCW();
+    void turnGreenFaceCCW();
+    void turnYellowFaceCW();
+    void turnYellowFaceCCW();
+    void turnFace(const FaceColor& side, bool turnCW);
 public:
     RubiksCubeList();
-    FaceColor** getSide(const FaceColor side);
+    FaceColor** getSide(const FaceColor &side);
     FaceColor getColor(const FaceColor& side, const int& row, const int& clm) const;
     std::string toString();
 

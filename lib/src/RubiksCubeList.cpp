@@ -44,8 +44,8 @@ void RubiksCubeList::turnRedFaceCW()
 {
     for (int i = 0; i < 3; i++) {
         FaceColor current = getColor(blue, i, 2);
-        setColor(blue, i, 2, getColor(white, i, 2));
-        setColor(white, i, 2, getColor(green, 2-i, 0));
+        setColor(blue, i, 2, getColor(white, 0, i));
+        setColor(white, 0, i, getColor(green, 2-i, 0));
         setColor(green, 2-i, 0, getColor(yellow, 2, 2-i));
         setColor(yellow, 2, 2-i, current);
     }
@@ -57,15 +57,177 @@ void RubiksCubeList::turnRedFaceCCW() {
         FaceColor current = getColor(blue, i, 2);
         setColor(blue, i, 2, getColor(yellow, 2, 2-i));
         setColor(yellow, 2, 2-i, getColor(green, 2-i, 0));
-        setColor(green, 2-i, 0, getColor(white, i, 2));
-        setColor(white, i, 2, current);
+        setColor(green, 2-i, 0, getColor(white, 0, i));
+        setColor(white, 0, i, current);
     }
-
     turnFacePiecesCCW(red);
 }
 
 void RubiksCubeList::turnBlueFaceCW() {
-    
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(orange, i, 2);
+        setColor(orange, i, 2, getColor(white, 2-i, 0));
+        setColor(white, 2-i, 0, getColor(red, 2-i, 0));
+        setColor(red, 2-i, 0, getColor(yellow, 2-i, 0));
+        setColor(yellow, 2-i, 0, current);
+    }
+    turnFacePiecesCW(blue);
+}
+
+void RubiksCubeList::turnBlueFaceCCW()
+{
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(orange, i, 2);
+        setColor(orange, i, 2, getColor(yellow, 2-i, 0));
+        setColor(yellow, 2-i, 0, getColor(red, 2-i, 0));
+        setColor(red, 2-i, 0, getColor(white, 2-i, 0));
+        setColor(white, 2-i, 0, current);
+    }
+    turnFacePiecesCCW(blue);
+}
+
+void RubiksCubeList::turnWhiteFaceCW()
+{
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(red, 2, i);
+        setColor(red, 2, i, getColor(blue, 2, i));
+        setColor(blue, 2, i, getColor(orange, 2, i));
+        setColor(orange, 2, i, getColor(green, 2, i));
+        setColor(green, 2, i, current);
+    }
+    turnFacePiecesCW(white);
+}
+
+void RubiksCubeList::turnWhiteFaceCCW()
+{
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(red, 2, i);
+        setColor(red, 2, i, getColor(green, 2, i));
+        setColor(green, 2, i, getColor(orange, 2, i));
+        setColor(orange, 2, i, getColor(blue, 2, i));
+        setColor(blue, 2, i, current);
+    }
+    turnFacePiecesCCW(white);
+}
+
+void RubiksCubeList::turnOrangeFaceCW()
+{
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(green, i, 2);
+        setColor(green, i, 2, getColor(white, 2, 2-i));
+        setColor(white, 2, 2-i, getColor(blue, 2-i, 0));
+        setColor(blue, 2-i, 0, getColor(yellow, 0, 2-i));
+        setColor(yellow, 0, 2-i, current);
+    }
+    turnFacePiecesCW(orange);
+}
+
+void RubiksCubeList::turnOrangeFaceCCW()
+{
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(green, i, 2);
+        setColor(green, i, 2, getColor(yellow, 0, 2-i));
+        setColor(yellow, 0, 2-i, getColor(blue, 2-i, 0));
+        setColor(blue, 2-i, 0, getColor(white, 2, 2-i));
+        setColor(white, 2, 2-i, current);
+    }
+    turnFacePiecesCCW(orange);
+}
+
+void RubiksCubeList::turnGreenFaceCW()
+{
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(red, i, 2);
+        setColor(red, i, 2, getColor(white, i, 2));
+        setColor(white, i, 2, getColor(orange, 2-i, 0));
+        setColor(orange, 2-i, 0, getColor(yellow, i, 2));
+        setColor(yellow, i, 2, current);
+    }
+    turnFacePiecesCW(green);
+}
+
+void RubiksCubeList::turnGreenFaceCCW()
+{
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(red, i, 2);
+        setColor(red, i, 2, getColor(yellow, i, 2));
+        setColor(yellow, i, 2, getColor(orange, 2-i, 0));
+        setColor(orange, 2-i, 0, getColor(white, i, 2));
+        setColor(white, i, 2, current);
+    }
+    turnFacePiecesCCW(green);
+}
+
+void RubiksCubeList::turnYellowFaceCW()
+{
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(red, 0, i);
+        setColor(red, 0, i, getColor(green, 0, i));
+        setColor(green, 0, i, getColor(orange, 0, i));
+        setColor(orange, 0, i, getColor(blue, 0, i));
+        setColor(blue, 0, i, current);
+    }
+    turnFacePiecesCW(yellow);
+}
+
+void RubiksCubeList::turnYellowFaceCCW()
+{
+    for (int i = 0; i < 3; i++) {
+        FaceColor current = getColor(red, 0, i);
+        setColor(red, 0, i, getColor(blue, 0, i));
+        setColor(blue, 0, i, getColor(orange, 0, i));
+        setColor(orange, 0, i, getColor(green, 0, i));
+        setColor(green, 0, i, current);
+    }
+    turnFacePiecesCCW(yellow);
+}
+
+void RubiksCubeList::turnFace(const FaceColor &side, bool turnCW)
+{
+    if (turnCW) {
+        switch (side) {
+            case white:
+                turnWhiteFaceCW();
+                break;
+            case red:
+                turnRedFaceCW();
+                break;
+            case blue:
+                turnBlueFaceCW();
+                break;
+            case orange:
+                turnOrangeFaceCW();
+                break;
+            case green:
+                turnGreenFaceCW();
+                break;
+            case yellow:
+                turnYellowFaceCW();
+                break;
+        }
+    }
+    else {
+        switch (side) {
+            case white:
+                turnWhiteFaceCW();
+                break;
+            case red:
+                turnRedFaceCCW();
+                break;
+            case blue:
+                turnBlueFaceCCW();
+                break;
+            case orange:
+                turnOrangeFaceCCW();
+                break;
+            case green:
+                turnGreenFaceCCW();
+                break;
+            case yellow:
+                turnYellowFaceCCW();
+                break;
+        }
+    }
 }
 
 FaceColor RubiksCubeList::getLeftFace()
@@ -188,56 +350,62 @@ void RubiksCubeList::setCurrentFace(const FaceColor &s)
 
 void RubiksCubeList::turnRightFaceCW()
 {
-    switch(currentSide) {
-        case blue:
-            turnRedFaceCW();
-            break;
-    }
+    turnFace(getRightFace(), true);
 }
 
 void RubiksCubeList::turnRightFaceCCW()
 {
+    turnFace(getRightFace(), false);
 }
 
 void RubiksCubeList::turnLeftFaceCW()
 {
-    
+    turnFace(getLeftFace(), true);
 }
 
 void RubiksCubeList::turnLeftFaceCCW()
 {
+    turnFace(getLeftFace(), false);
 }
 
 void RubiksCubeList::turnUpFaceCW()
 {
+    turnFace(getUpFace(), true);
 }
 
 void RubiksCubeList::turnUpFaceCCW()
 {
+    turnFace(getUpFace(), false);
 }
 
 void RubiksCubeList::turnDownFaceCW()
 {
+    turnFace(getDownFace(), true);
 }
 
 void RubiksCubeList::turnDownFaceCCW()
 {
+    turnFace(getDownFace(), false);
 }
 
 void RubiksCubeList::turnFrontFaceCW()
 {
+    turnFace(currentSide, true);
 }
 
 void RubiksCubeList::turnFrontFaceCCW()
 {
+    turnFace(currentSide, false);
 }
 
 void RubiksCubeList::turnBackFaceCW()
 {
+    turnFace(getBackFace(), true);
 }
 
 void RubiksCubeList::turnBackFaceCCW()
 {
+    turnFace(getBackFace(), false);
 }
 
 
@@ -253,7 +421,7 @@ RubiksCubeList::RubiksCubeList()
     }
 }
 
-FaceColor **RubiksCubeList::getSide(const FaceColor side)
+FaceColor **RubiksCubeList::getSide(const FaceColor &side)
 {
     FaceColor** colors = new FaceColor*[3];
     for (int i = 0; i < 3; i++) {
