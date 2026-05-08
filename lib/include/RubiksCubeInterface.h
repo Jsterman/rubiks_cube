@@ -7,7 +7,7 @@ protected:
     virtual void setColor(const FaceColor& side, const int& row, const int& clm, const FaceColor& color) = 0;
 
 public:
-    virtual FaceColor** getSide(const FaceColor side) = 0;
+    virtual FaceColor** getSide(const FaceColor& side) = 0;
     virtual FaceColor getColor(const FaceColor& side, const int& row, const int& clm) const = 0;
     virtual std::string toString() = 0;
 
