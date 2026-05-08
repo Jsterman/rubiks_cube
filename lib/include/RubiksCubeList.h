@@ -7,8 +7,12 @@ private:
     FaceColor currentSide = white;
     FaceColor faces[56];
     void setColor(const FaceColor& side, const int& row, const int& clm, const FaceColor& color);
+    void turnFacePiecesCW(const FaceColor& side);
+    void turnFacePiecesCCW(const FaceColor& side);
     void turnRedFaceCW();
     void turnRedFaceCCW();
+    void turnBlueFaceCW();
+    void turnBlueFaceCCW();
 public:
     RubiksCubeList();
     FaceColor** getSide(const FaceColor side);

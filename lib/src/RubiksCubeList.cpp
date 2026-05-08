@@ -5,6 +5,41 @@ void RubiksCubeList::setColor(const FaceColor& side, const int& row, const int& 
     faces[side*9+row*3+clm] = color;
 }
 
+void RubiksCubeList::turnFacePiecesCW(const FaceColor &side)
+{
+    // Rotate corner pieces
+
+    FaceColor topLeft = getColor(side, 0, 0);
+    setColor(side, 0, 0, getColor(side, 2, 0));
+    setColor(side, 2, 0, getColor(side, 2, 2));
+    setColor(side, 2, 2, getColor(side, 0, 2));
+    setColor(side, 0, 2, topLeft);
+
+    // Rotate center pieces
+    FaceColor topMiddle = getColor(side, 0, 1);
+    setColor(side, 0, 1, getColor(side, 1, 0));
+    setColor(side, 1, 0, getColor(side, 2, 1));
+    setColor(side, 2, 1, getColor(side, 2, 1));
+    setColor(side, 2, 1, topMiddle);
+}
+
+void RubiksCubeList::turnFacePiecesCCW(const FaceColor &side)
+{
+    // Rotate corner pieces
+    FaceColor topLeft = getColor(side, 0, 0);
+    setColor(side, 0, 0, getColor(side, 0, 2));
+    setColor(side, 0, 2, getColor(side, 2, 2));
+    setColor(side, 2, 2, getColor(side, 2, 0));
+    setColor(side, 2, 0, topLeft);
+
+    // Rotate middle pieces
+    FaceColor topMiddle = getColor(side, 0, 1);
+    setColor(side, 0, 1, getColor(side, 1, 2));
+    setColor(side, 1, 2, getColor(side, 2, 1));
+    setColor(side, 2, 1, getColor(side, 1, 0));
+    setColor(side, 1, 0, topMiddle);
+}
+
 void RubiksCubeList::turnRedFaceCW()
 {
     for (int i = 0; i < 3; i++) {
@@ -14,7 +49,7 @@ void RubiksCubeList::turnRedFaceCW()
         setColor(green, 2-i, 0, getColor(yellow, 2, 2-i));
         setColor(yellow, 2, 2-i, current);
     }
-    // TODO: Rotate colors on the red face
+    turnFacePiecesCW(red);
 }
 
 void RubiksCubeList::turnRedFaceCCW() {
@@ -25,7 +60,12 @@ void RubiksCubeList::turnRedFaceCCW() {
         setColor(green, 2-i, 0, getColor(white, i, 2));
         setColor(white, i, 2, current);
     }
-    // TODO: Rotate colors on the red face
+
+    turnFacePiecesCCW(red);
+}
+
+void RubiksCubeList::turnBlueFaceCW() {
+    
 }
 
 FaceColor RubiksCubeList::getLeftFace()
