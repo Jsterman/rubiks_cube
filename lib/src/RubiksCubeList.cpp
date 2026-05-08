@@ -19,8 +19,8 @@ void RubiksCubeList::turnFacePiecesCW(const FaceColor &side)
     FaceColor topMiddle = getColor(side, 0, 1);
     setColor(side, 0, 1, getColor(side, 1, 0));
     setColor(side, 1, 0, getColor(side, 2, 1));
-    setColor(side, 2, 1, getColor(side, 2, 1));
-    setColor(side, 2, 1, topMiddle);
+    setColor(side, 2, 1, getColor(side, 1, 2));
+    setColor(side, 1, 2, topMiddle);
 }
 
 void RubiksCubeList::turnFacePiecesCCW(const FaceColor &side)
