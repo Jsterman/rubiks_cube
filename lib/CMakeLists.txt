@@ -2,19 +2,22 @@ add_library(RubiksCube)
 
 target_sources(RubiksCube
     PRIVATE
-        src/RubiksCubeList.cpp
+        src/RubiksCubeListBackend.cpp
         src/FaceColor.cpp
-        src/RubiksCubePhy.cpp
+        src/RubiksCubePhyBackend.cpp
+        src/RubiksCube.cpp
 
     PUBLIC
         FILE_SET HEADERS
         BASE_DIRS
             include
         FILES
-            include/RubiksCubeList.h
-            include/RubiksCubePhy.h
-            include/RubiksCubeInterface.h
+            include/RubiksCubeListBackend.h
+            include/RubiksCubePhyBackend.h
+            include/RubiksCubeBackendInterface.h
             include/FaceColor.h
+            include/RubiksCube.h
+            include/RubiksCubeBackendFactory.h
 )
 
 # Include items for Google Test

@@ -2,7 +2,7 @@
 #include <FaceColor.h>
 #include <string>
 
-class RubiksCubeInterface {
+class RubiksCubeBackendInterface {
 protected:
     virtual void setColor(const FaceColor& side, const int& row, const int& clm, const FaceColor& color) = 0;
 

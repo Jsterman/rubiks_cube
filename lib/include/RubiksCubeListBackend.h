@@ -1,8 +1,8 @@
 #pragma once
-#include <RubiksCubeInterface.h>
+#include <RubiksCubeBackendInterface.h>
 #include <string>
 
-class RubiksCubeList : public RubiksCubeInterface {
+class RubiksCubeListBackend : public RubiksCubeBackendInterface {
 private:
     FaceColor currentSide = white;
     FaceColor faces[56];
@@ -23,7 +23,7 @@ private:
     void turnYellowFaceCCW();
     void turnFace(const FaceColor& side, bool turnCW);
 public:
-    RubiksCubeList();
+    RubiksCubeListBackend();
     FaceColor** getSide(const FaceColor &side);
     FaceColor getColor(const FaceColor& side, const int& row, const int& clm) const;
     std::string toString();
