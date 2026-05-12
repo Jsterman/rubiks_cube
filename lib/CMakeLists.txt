@@ -6,12 +6,13 @@ target_sources(RubiksCube
         src/FaceColor.cpp
         src/RubiksCubePhyBackend.cpp
         src/RubiksCube.cpp
-
+        src/Cube.cpp
     PUBLIC
         FILE_SET HEADERS
         BASE_DIRS
             include
         FILES
+            include/Cube.h
             include/RubiksCubeListBackend.h
             include/RubiksCubePhyBackend.h
             include/RubiksCubeBackendInterface.h
