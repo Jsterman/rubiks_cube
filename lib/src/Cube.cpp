@@ -77,6 +77,13 @@ void Cube::setTop(const FaceColor &top)
 
 void Cube::setBottom(const FaceColor &bottom)
 {
+    int i = 0;
+    for (i = 0; i < 4; i++) {
+        if (current->others[i]->front == bottom) break;
+    }
+    if (i != 4) {
+        top = (i+2)%4;
+    }
 }
 
 FaceColor Cube::getTop()
@@ -111,16 +118,32 @@ FaceColor Cube::getFront()
 
 void Cube::rotateDown()
 {
+    FaceColor curC = getFront();
+    FaceColor bot = getBottom();
+    setFront(bot);
+    setTop(curC);
 }
 
 void Cube::rotateRight()
 {
+    FaceColor top = getTop();
+    FaceColor newFront = getRight();
+    setFront(newFront);
+    setTop(top);
 }
 
 void Cube::rotateLeft()
 {
+    FaceColor top = getTop();
+    FaceColor newFront = getLeft();
+    setFront(newFront);
+    setTop(top);
 }
 
 void Cube::rotateUp()
 {
+    FaceColor newBot = getFront();
+    FaceColor newC = getTop();
+    setFront(newC);
+    setBottom(newBot);
 }
