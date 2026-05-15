@@ -1,9 +1,5 @@
 #include <RubiksCubeListBackend.h>
 #include <sstream>
-#define DEBUG
-#ifdef DEBUG
-#include <iostream>
-#endif
 
 void RubiksCubeListBackend::setColor(const FaceColor& side, const int& row, const int& clm, const FaceColor& color) {
     faces[side*9+row*3+clm] = color;
@@ -68,9 +64,6 @@ void RubiksCubeListBackend::turnRedFaceCCW() {
 }
 
 void RubiksCubeListBackend::turnBlueFaceCW() {
-    #ifdef DEBUG
-    std::cout << "Turning blue face CW" << std::endl;
-    #endif
     for (int i = 0; i < 3; i++) {
         FaceColor current = getColor(orange, i, 2);
         setColor(orange, i, 2, getColor(white, 2-i, 0));
@@ -123,8 +116,8 @@ void RubiksCubeListBackend::turnOrangeFaceCW()
         FaceColor current = getColor(green, i, 2);
         setColor(green, i, 2, getColor(white, 2, 2-i));
         setColor(white, 2, 2-i, getColor(blue, 2-i, 0));
-        setColor(blue, 2-i, 0, getColor(yellow, 0, 2-i));
-        setColor(yellow, 0, 2-i, current);
+        setColor(blue, 2-i, 0, getColor(yellow, 0, i));
+        setColor(yellow, 0, i, current);
     }
     turnFacePiecesCW(orange);
 }
@@ -133,8 +126,8 @@ void RubiksCubeListBackend::turnOrangeFaceCCW()
 {
     for (int i = 0; i < 3; i++) {
         FaceColor current = getColor(green, i, 2);
-        setColor(green, i, 2, getColor(yellow, 0, 2-i));
-        setColor(yellow, 0, 2-i, getColor(blue, 2-i, 0));
+        setColor(green, i, 2, getColor(yellow, 0, i));
+        setColor(yellow, 0, i, getColor(blue, 2-i, 0));
         setColor(blue, 2-i, 0, getColor(white, 2, 2-i));
         setColor(white, 2, 2-i, current);
     }
@@ -167,9 +160,6 @@ void RubiksCubeListBackend::turnGreenFaceCCW()
 
 void RubiksCubeListBackend::turnYellowFaceCW()
 {
-    #ifdef DEBUG
-    std::cout << "Turning yellow face CW" << std::endl;
-    #endif
     for (int i = 0; i < 3; i++) {
         FaceColor current = getColor(red, 0, i);
         setColor(red, 0, i, getColor(green, 0, i));
@@ -219,7 +209,7 @@ void RubiksCubeListBackend::turnFace(const FaceColor &side, bool turnCW)
     else {
         switch (side) {
             case white:
-                turnWhiteFaceCW();
+                turnWhiteFaceCCW();
                 break;
             case red:
                 turnRedFaceCCW();

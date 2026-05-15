@@ -93,7 +93,7 @@ void RubiksCube::executeSequence(std::string seq)
             seq = seq.substr(2);
         }
         else {
-            command = seq[0] + ' ';
+            command = seq.substr(0) + " ";
             seq = "";
         }
 
