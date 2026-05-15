@@ -26,6 +26,7 @@ Cube::Cube()
         curF->others[1] = faces[prev];
         curF->others[2] = whiteFace;
         curF->others[3] = faces[(i%4)+1];
+        curF->others[4] = faces[((i+1)%4)+1];
     }
 
     Face* curF = faces[5];
@@ -36,6 +37,7 @@ Cube::Cube()
     curF->others[4] = whiteFace;
 
     current = whiteFace;
+    top = 0;
 }
 
 Cube::~Cube()
@@ -43,6 +45,18 @@ Cube::~Cube()
     for (int i = 0; i < 6; i++) {
         delete allFaces[i];
         allFaces[i] = nullptr;
+    }
+}
+
+// Sets the orientation of the cube. Other is assumed to be the side facing up unless top is set to false. In the case top is false, other will be the color of the bottom face.
+void Cube::setOrientation(const FaceColor &front, const FaceColor &other, bool top)
+{
+    setFront(front);
+    if (top) {
+        setTop(other);
+    }
+    else {
+        setBottom(other);
     }
 }
 
@@ -118,32 +132,28 @@ FaceColor Cube::getFront()
 
 void Cube::rotateDown()
 {
-    FaceColor curC = getFront();
-    FaceColor bot = getBottom();
-    setFront(bot);
-    setTop(curC);
+    FaceColor newTop = getFront();
+    FaceColor newFront = getBottom();
+    setOrientation(newFront, newTop);
 }
 
 void Cube::rotateRight()
 {
     FaceColor top = getTop();
     FaceColor newFront = getRight();
-    setFront(newFront);
-    setTop(top);
+    setOrientation(newFront, top);
 }
 
 void Cube::rotateLeft()
 {
     FaceColor top = getTop();
     FaceColor newFront = getLeft();
-    setFront(newFront);
-    setTop(top);
+    setOrientation(newFront, top);
 }
 
 void Cube::rotateUp()
 {
     FaceColor newBot = getFront();
-    FaceColor newC = getTop();
-    setFront(newC);
-    setBottom(newBot);
+    FaceColor newFront = getTop();
+    setOrientation(newFront, newBot, false);
 }

@@ -160,3 +160,8 @@ void RubiksCube::executeSequence(std::string seq)
     }
 
 }
+
+void RubiksCube::setOrientation(const FaceColor &front, const FaceColor &top)
+{
+    backend->setOrientation(front, top);
+}

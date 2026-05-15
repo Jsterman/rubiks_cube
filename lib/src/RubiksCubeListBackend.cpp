@@ -1,5 +1,9 @@
 #include <RubiksCubeListBackend.h>
 #include <sstream>
+#define DEBUG
+#ifdef DEBUG
+#include <iostream>
+#endif
 
 void RubiksCubeListBackend::setColor(const FaceColor& side, const int& row, const int& clm, const FaceColor& color) {
     faces[side*9+row*3+clm] = color;
@@ -64,6 +68,9 @@ void RubiksCubeListBackend::turnRedFaceCCW() {
 }
 
 void RubiksCubeListBackend::turnBlueFaceCW() {
+    #ifdef DEBUG
+    std::cout << "Turning blue face CW" << std::endl;
+    #endif
     for (int i = 0; i < 3; i++) {
         FaceColor current = getColor(orange, i, 2);
         setColor(orange, i, 2, getColor(white, 2-i, 0));
@@ -160,6 +167,9 @@ void RubiksCubeListBackend::turnGreenFaceCCW()
 
 void RubiksCubeListBackend::turnYellowFaceCW()
 {
+    #ifdef DEBUG
+    std::cout << "Turning yellow face CW" << std::endl;
+    #endif
     for (int i = 0; i < 3; i++) {
         FaceColor current = getColor(red, 0, i);
         setColor(red, 0, i, getColor(green, 0, i));
@@ -232,95 +242,28 @@ void RubiksCubeListBackend::turnFace(const FaceColor &side, bool turnCW)
 
 FaceColor RubiksCubeListBackend::getLeftFace()
 {
-    switch (currentSide) {
-        case white:
-            return blue;
-        case red:
-            return blue;
-        case blue:
-            return orange;
-        case orange:
-            return green;
-        case green:
-            return red;
-        case yellow:
-            return blue;
-        default:
-            return white;
-    }
+    return cube.getLeft();
 }
 
 FaceColor RubiksCubeListBackend::getRightFace() {
-    switch (currentSide) {
-        case white:
-            return green;
-        case red:
-            return green;
-        case green:
-            return orange;
-        case orange:
-            return blue;
-        case blue:
-            return red;
-        case yellow:
-            return green;
-        default:
-            return white;
-    }
+    return cube.getRight();
 }
 
 FaceColor RubiksCubeListBackend::getUpFace() {
-    switch (currentSide)
-    {
-    case white:
-        return red;
-    case red:
-    case blue:
-    case orange:
-    case green:
-        return yellow;
-    case yellow:
-        return orange;
-    default:
-        return white;
-    }
+    return cube.getTop();
 }
 
 FaceColor RubiksCubeListBackend::getDownFace() {
-    switch (currentSide)
-    {
-    case white:
-        return orange;
-    case red:
-    case blue:
-    case orange:
-    case green:
-        return white;
-    case yellow:
-        return red;
-    
-    default:
-        return white;
-    }
+    return cube.getBottom();
 }
 
 FaceColor RubiksCubeListBackend::getBackFace() {
-    switch(currentSide) {
-        case white:
-            return yellow;
-        case red:
-            return orange;
-        case blue:
-            return green;
-        case orange:
-            return red;
-        case green:
-            return blue;
-        case yellow:
-            return white;
-        default:
-            return white;
-    }
+    return cube.getBack();
+}
+
+void RubiksCubeListBackend::setOrientation(const FaceColor &front, const FaceColor &top)
+{
+    cube.setOrientation(front, top);
 }
 
 FaceColor RubiksCubeListBackend::getColor(const FaceColor& side, const int& row, const int& clm) const {
@@ -347,7 +290,7 @@ std::string RubiksCubeListBackend::toString()
 
 void RubiksCubeListBackend::setCurrentFace(const FaceColor &s)
 {
-    currentSide = s;
+    cube.setFront(s);
 }
 
 void RubiksCubeListBackend::turnRightFaceCW()
@@ -392,12 +335,12 @@ void RubiksCubeListBackend::turnDownFaceCCW()
 
 void RubiksCubeListBackend::turnFrontFaceCW()
 {
-    turnFace(currentSide, true);
+    turnFace(cube.getFront(), true);
 }
 
 void RubiksCubeListBackend::turnFrontFaceCCW()
 {
-    turnFace(currentSide, false);
+    turnFace(cube.getFront(), false);
 }
 
 void RubiksCubeListBackend::turnBackFaceCW()

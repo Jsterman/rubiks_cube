@@ -26,4 +26,5 @@ public:
     void turnBackFaceCCW();
 
     void executeSequence(std::string);
+    void setOrientation(const FaceColor& front, const FaceColor &top);
 };

@@ -12,6 +12,7 @@ public:
     virtual std::string toString() = 0;
 
     virtual void setCurrentFace(const FaceColor&) = 0;
+    virtual void setOrientation(const FaceColor &front, const FaceColor &top) = 0;
     virtual void turnRightFaceCW() = 0;
     virtual void turnRightFaceCCW() = 0;
     virtual void turnLeftFaceCW() = 0;

@@ -18,6 +18,7 @@ private:
 public:
     Cube();
     ~Cube();
+    void setOrientation(const FaceColor &front, const FaceColor &other, bool top=true);
     void setFront(const FaceColor &current);
     void setTop(const FaceColor &top);
     void setBottom(const FaceColor &bottom);
