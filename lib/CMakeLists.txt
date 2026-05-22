@@ -7,6 +7,7 @@ target_sources(RubiksCube
         src/RubiksCubePhyBackend.cpp
         src/RubiksCube.cpp
         src/Cube.cpp
+        src/CubeSolver.cpp
     PUBLIC
         FILE_SET HEADERS
         BASE_DIRS
@@ -19,6 +20,7 @@ target_sources(RubiksCube
             include/FaceColor.h
             include/RubiksCube.h
             include/RubiksCubeBackendFactory.h
+            include/CubeSolver.h
 )
 
 # Include items for Google Test
